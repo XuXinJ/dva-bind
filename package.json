@@ -1,0 +1,24 @@
+{
+  "name": "dva-bind",
+  "version": "1.0.5",
+  "description": "dva 快捷更新state和简化执行effects 插件",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/XuXinJ/dva-bind.git"
+  },
+  "keywords": [
+    "dva",
+    "类似vue双向绑定那样快捷修改 dva 状态",
+    "react"
+  ],
+  "author": "xuxinjiang",
+  "license": "ISC",
+  "devDependencies": {},
+  "dependencies": {
+    "typescript": "^4.0.2"
+  }
+}
