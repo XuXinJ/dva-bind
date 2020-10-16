@@ -34,12 +34,12 @@ bindObj.init(props.dispatch)
 
 ```
 
-**使用 bindObj.[key] = 'xxxxx'  赋值方式去修改model里面的state属性**
+**使用 bindObj.key = 'xxxxx'  赋值方式去修改model里面的state属性**
 
 ```javascript
 
 // 修改dva model里面state的list属性(简化dispatch写法和省略编写reducers的方法去修改state属性)
-bindObj.Model.list = [1,2,3]
+bindObj.list = [1,2,3]
 
 // 等价于dispatch写法  调用reducers的setList方法去修改state的list属性
 dispatch({
@@ -51,7 +51,7 @@ dispatch({
 
 ```
 
-**使用 bindObj.Ef[key]( )  方式去调用model里面的effects方法**
+**使用 bindObj.Ef.key( )  方式去调用model里面的effects方法**
 
 ```javascript
 // 调用dva model里面的effects的 addTodo方法
@@ -89,9 +89,6 @@ const model = {
     data:{}
   },
   reducers: {
-    save(state, { payload: { list } }) {
-      return { ...state, list }
-    }
   },
   effects: {
     *addTodo({ payload: value }, { call, put, select }) {
