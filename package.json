@@ -1,6 +1,6 @@
 {
   "name": "dva-bind",
-  "version": "1.0.5",
+  "version": "1.0.8",
   "description": "dva 快捷更新state和简化执行effects 插件",
   "main": "dist/index.js",
   "scripts": {

@@ -4,15 +4,44 @@
 
 dva-bind可以类似vue双向绑定那样快捷修改 dva model里面的state和执行effect函数插件，并且兼容原来dispatch写法。
 
-**使用 bindObj.key = 'xxxxx'  赋值方式去修改model里面的state属性**
+**初始化 bindObj**
+
+```javascript
+// dva model文件 /models/index.js
+import DvaBind from 'dva-bind'
+
+const model = {
+  namespace: 'namespace',
+  state: {
+    ...
+  },
+  reducers: {
+    ...
+  },
+  effects: {
+    ...
+  }
+}
+export const bindObj = DvaBind(model) 
+export default model
+
+
+// 在组件内导出绑定model对象
+import { bindObj } from './models/index'
+
+// 修改dva model里面state的list属性(简化dispatch写法和省略编写reducers的方法去修改state属性)
+bindObj.init(props.dispatch)
+
+```
+
+**使用 bindObj.[key] = 'xxxxx'  赋值方式去修改model里面的state属性**
 
 ```javascript
 
 // 修改dva model里面state的list属性(简化dispatch写法和省略编写reducers的方法去修改state属性)
-bindObj.list = [1,2,3]
+bindObj.Model.list = [1,2,3]
 
-// 等价于dispatch写法
-// 调用reducers的setList方法去修改state的list属性
+// 等价于dispatch写法  调用reducers的setList方法去修改state的list属性
 dispatch({
 	type:`${namespace}/setList`,
 	payload:{
@@ -22,14 +51,13 @@ dispatch({
 
 ```
 
-**使用 bindObj.Ef.key( )  方式去调用model里面的effects方法**
+**使用 bindObj.Ef[key]( )  方式去调用model里面的effects方法**
 
 ```javascript
 // 调用dva model里面的effects的 addTodo方法
 bindObj.Ef.addTodo({a:111,b:2222})
 
-// 等价于dispatch写法
-// 调用effects的addTodo方法
+// 等价于dispatch写法 调用effects的addTodo方法
 dispatch({
 	type:`${namespace}/addTodo`,
 	payload:{a:111,b:2222}
@@ -96,18 +124,18 @@ import { todoModelBind } from '*/model'
 
 class Temp extends React.Component{
   constructor(props){
-    this.bindObj = todoModelBind(props.dispatch)
+    todoModelBind.init(props.dispatch)
     // 修改todoModel state的list属性
-    this.bindObj.list = [1,2,3,4,5]
+    todoModelBind.list = [1,2,3,4,5]
     // 也可以调用todoModel 有promise 返回的effects的getData方法
-    this.bindObj.Ef.getData({id:111}).then((data)=>{
+    todoModelBind.Ef.getData({id:111}).then((data)=>{
       console.log(data)
     })
   }
   
   todoFun(){
    // 调用todoModel effects的addTodo方法
-   this.bindObj.Ef.addTodo({a:111,b:333})
+   todoModelBind.Ef.addTodo({a:111,b:333})
   }
   render(){
     return (
@@ -131,16 +159,15 @@ export default connect(({todoModel})=>({todoModel}))(Temp)
 import { useEffect } from 'react'
 import { connect } from 'dva'
 import { todoModelBind } from '*/model'
-let bindObj
 const Temp = (props)=>{
   useEffect(()=>{
-    bindObj = todoModelBind(props.dispatch)
+    todoModelBind.init(props.dispatch)
     // 修改todoModel state的list属性
-    bindObj.list = [1,2,3,4,5]
+    todoModelBind.list = [1,2,3,4,5]
   },[])
   const todoFun =()=>{
    // 调用todoModel effects的addTodo方法
-   bindObj.Ef.addTodo({a:111,b:333})
+   todoModelBind.Ef.addTodo({a:111,b:333})
   }
   return (
     <div>
