@@ -1,8 +1,9 @@
 {
   "name": "dva-bind",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "dva 快捷更新state和简化执行effects 插件",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc"
   },
