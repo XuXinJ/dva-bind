@@ -1,10 +1,10 @@
 # dva-bind
 
-### 简介
+## 简介
 
 dva-bind 可以类似 vue 双向绑定那样快捷修改 dva model 里面的 state 和执行 effect 函数插件，并且兼容原来 dispatch 写法。
 
-**初始化 bindObj**
+### 初始化 bindObj
 
 ```javascript
 // dva model文件 /models/index.js
@@ -34,7 +34,7 @@ bindObj.init(props.dispatch)
 
 ```
 
-**使用 bindObj.key = 'xxxxx' 赋值方式去修改 model 里面的 state 属性**
+### 使用 bindObj.key = 'xxxxx' 赋值方式去修改 model 里面的 state 属性
 
 ```javascript
 // 修改dva model里面state的list属性(简化dispatch写法和省略编写reducers的方法去修改state属性)
@@ -49,7 +49,7 @@ dispatch({
 });
 ```
 
-**使用 bindObj.Ef.key( ) 方式去调用 model 里面的 effects 方法**
+### 使用 bindObj.Ef.key( ) 方式去调用 model 里面的 effects 方法
 
 ```javascript
 // 调用dva model里面的effects的 addTodo方法
@@ -62,7 +62,7 @@ dispatch({
 });
 ```
 
-#### 使用教程
+## 使用教程
 
 安装插件
 
@@ -70,7 +70,7 @@ dispatch({
 npm i dva-bind --save
 ```
 
-#### 绑定 dva model
+### 绑定 dva model
 
 在 model.js 代码如下
 
@@ -106,9 +106,9 @@ export const namespace = model.namespace;
 export default model;
 ```
 
-#### 在组件里面使用方法
+### 在组件里面使用方法
 
-**在 class 类组件使用**
+### 在 class 类组件使用
 
 ```javascript
 import React from ‘react’
@@ -149,7 +149,7 @@ export default connect(({todoModel})=>({todoModel}))(Temp)
 
 ```
 
-**在函数组件使用**
+### 在函数组件使用
 
 ```javascript
 import { useEffect } from 'react';
@@ -178,7 +178,7 @@ const Temp = (props) => {
 export default connect(({ todoModel }) => ({ todoModel }))(Temp);
 ```
 
-**使用 react-redux hook useSelector,useDispatch 代替 connect**
+### 使用 react-redux hook useSelector,useDispatch 代替 connect
 
 ```javascript
 import { useEffect } from 'react';
